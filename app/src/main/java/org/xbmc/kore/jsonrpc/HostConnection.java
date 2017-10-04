@@ -353,7 +353,11 @@ public class HostConnection {
      */
     public OkHttpClient getOkHttpClient() {
         if (httpClient == null) {
+
+//            Proxy proxy = new Proxy(Proxy.Type.HTTP,new InetSocketAddress("192.168.1.10", 9090));
+
             httpClient = new OkHttpClient();
+//            httpClient.setProxy(proxy);
             httpClient.setConnectTimeout(connectTimeout, TimeUnit.MILLISECONDS);
 
             httpClient.setAuthenticator(new Authenticator() {

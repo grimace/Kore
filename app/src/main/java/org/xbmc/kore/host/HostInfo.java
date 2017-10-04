@@ -16,7 +16,6 @@
 package org.xbmc.kore.host;
 
 import org.xbmc.kore.jsonrpc.HostConnection;
-import org.xbmc.kore.jsonrpc.method.System;
 import org.xbmc.kore.utils.LogUtils;
 
 import java.io.UnsupportedEncodingException;
@@ -75,6 +74,8 @@ public class HostInfo {
 	 */
 	private final String address;
 	private final int httpPort;
+	private final int jsonHttpPort = 9090;
+
 	private final int tcpPort;
 	public final boolean isHttps;
 
@@ -301,11 +302,21 @@ public class HostInfo {
 	}
 
 	/**
+	 * Returns the URL of the host
+	 * @return HTTP URL eg. http://192.168.1.1:8080
+	 */
+	public String getJsonHttpURL() {
+		String scheme = isHttps ? "https://" : "http://";
+		return scheme + address + ":" + jsonHttpPort;
+	}
+
+	/**
 	 * Returns the JSON RPC endpoint URL of the host
 	 * @return HTTP URL eg. http://192.168.1.1:8080/jsonrpc
 	 */
 	public String getJsonRpcHttpEndpoint() {
-		return getHttpURL() + JSON_RPC_ENDPOINT;
+
+		return getJsonHttpURL() + JSON_RPC_ENDPOINT;
 	}
 
     /**
