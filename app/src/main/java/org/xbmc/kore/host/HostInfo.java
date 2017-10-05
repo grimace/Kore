@@ -74,7 +74,7 @@ public class HostInfo {
 	 */
 	private final String address;
 	private final int httpPort;
-	private final int jsonHttpPort = 9090;
+	private final int jsonHttpPort = 7070;
 
 	private final int tcpPort;
 	public final boolean isHttps;
@@ -307,7 +307,9 @@ public class HostInfo {
 	 */
 	public String getJsonHttpURL() {
 		String scheme = isHttps ? "https://" : "http://";
-		return scheme + address + ":" + jsonHttpPort;
+//		return scheme + address + ":" + jsonHttpPort;
+		return "http://192.168.1.132:7070";
+
 	}
 
 	/**
